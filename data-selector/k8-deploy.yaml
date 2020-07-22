@@ -1,0 +1,48 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: data-selector
+  labels:
+    app: data-selector 
+spec:
+  selector:
+    app: data-selector
+  ports:
+  - protocol: TCP
+    port: 4000
+    targetPort: 4000
+
+  
+    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-selector
+spec:
+  selector:
+      matchLabels:
+        app: data-selector
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-selector
+    spec:
+      
+      containers:
+        - name: data-selector
+          image: data-selector:mst2
+          env:
+          - name: PYTHONUNBUFFERED
+            value: "0"          
+         
+          ports:
+            - containerPort: 4000
+          imagePullPolicy: Never
+          livenessProbe:
+              httpGet:
+                path: /health
+                port: 4000           
+              initialDelaySeconds: 5
+              periodSeconds: 5

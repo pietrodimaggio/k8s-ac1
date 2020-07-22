@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: data-api-gateway
+ 
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /data
+        backend:
+          serviceName: data-transform
+          servicePort: 4000
+      - path: /graph
+        backend:
+          serviceName: data-transform
+          servicePort: 4000
+      - path: /bycountry
+        backend:
+          serviceName: data-selector
+          servicePort: 4000
+      - path: /graphbycountry
+        backend:
+          serviceName: data-selector
+          servicePort: 4000          

@@ -1,0 +1,7 @@
+Flask==1.1.1
+Flask_API==2.0
+numpy==1.18.1
+requests
+schedule
+pika
+pandas

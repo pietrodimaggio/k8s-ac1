@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-reader
+spec:
+  selector:
+      matchLabels:
+        app: data-reader
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-reader
+    spec:   
+      containers:
+        - name: data-reader
+          image: data-reader:mst2
+          imagePullPolicy: Never
+          env:
+          - name: PYTHONUNBUFFERED
+            value: "0"          

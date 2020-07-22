@@ -1,0 +1,18 @@
+
+#SET minikube docker
+minikube docker-env | Invoke-Expression
+
+kubectl create namespace mst2
+
+#SET default namespace
+kubectl config set-context --current --namespace=mst2
+
+kubectl.exe create -f .\rabbitmq\rabbitmq-service.yaml.yaml
+
+kubectl.exe create -f .\rabbitmq\rabbitmq-controller.yaml
+
+#INSTALL Kong
+kubectl apply -f https://bit.ly/kong-ingress-dbless
+
+# docker build
+docker build . -t data-reader:mst2
