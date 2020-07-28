@@ -14,8 +14,8 @@ class DataReader:
         print("Connecting exchange")
         self.credentials = pika.PlainCredentials("guest", "guest")
         self.connection_params = pika.ConnectionParameters(
-           #host="rabbitmq-service" , credentials=self.credentials)
-           host="localhost", credentials=self.credentials)
+           host="rabbitmq-service" , credentials=self.credentials)
+           #host="localhost", credentials=self.credentials)
         self.connection = pika.BlockingConnection(self.connection_params)
         self.channel = self.connection.channel()
         self.channel.exchange_declare(exchange='data-exchange',
