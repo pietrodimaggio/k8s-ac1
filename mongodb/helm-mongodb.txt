@@ -1,0 +1,2 @@
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-release bitnami/mongodb  --set auth.rootPassword=m00n --set service.type=NodePort --set service.nodePort=32345
