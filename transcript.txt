@@ -10,8 +10,7 @@ kubectl.exe create -f .\rabbitmq\rabbitmq-service.yaml.yaml
 
 kubectl.exe create -f .\rabbitmq\rabbitmq-controller.yaml
 
-#INSTALL Ingress
-kubectl apply -f ingress-controller/ingress-controller-hostnetwork.yaml
+
 
 # docker build
 docker build . -t data-reader:mst2
@@ -19,6 +18,22 @@ docker build . -t data-reader:mst2
 #launch dashboard
 kubectl proxy --address='0.0.0.0' --disable-filter=true
 
-http://35.159.9.195:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/overview?namespace=default
+http://35.158.110.181:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/overview?namespace=default
+http://127.0.0.1:56919/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
 
- 
+#helm
+snap install helm --classic
+
+
+--------------------------------------
+#be root
+sudo -i
+
+#start cluster
+minikube start --vm-driver=none
+
+#clone source
+git clone https://github.com/pietrodimaggio/k8s-ac1.git
+
+#INSTALL Ingress
+kubectl apply -f ingress-controller/ingress-controller-hostnetwork.yaml

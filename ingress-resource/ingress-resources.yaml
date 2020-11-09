@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: data-ingresss
+spec:
+  rules:
+  
+    http:
+      paths:
+      - path: /data
+        pathType: Prefix
+        backend:
+          service:
+            name: data-transform
+            port:
+              number: 4000
+              
+      - path: /graph
+        pathType: Prefix
+        backend:
+          service:
+            name: data-transform
+            port:
+              number: 4000
+              
+      - path: /bycountry
+        pathType: Prefix
+        backend:
+          service:
+            name: data-selector
+            port:
+              number: 4000
+              
+      - path: /graphbycountry
+        pathType: Prefix
+        backend:
+          service:
+            name: data-selector
+            port:
+              number: 4000              
