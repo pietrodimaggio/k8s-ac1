@@ -37,3 +37,5 @@ git clone https://github.com/pietrodimaggio/k8s-ac1.git
 
 #INSTALL Ingress
 kubectl apply -f ingress-controller/ingress-controller-hostnetwork.yaml
+
+#expose service by ingress
